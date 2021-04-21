@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% for usr in user %}
+        <article class="media content-section">
+          <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}">
+          <form action="{{ url_for('posG',usr_id=usr.id , V=1)}}" method="POST">
+            <input class="btn btn-danger" type="submit" value="Admin">
+          </form>
+          <form action="{{ url_for('posG',usr_id=usr.id , V=2) }}" method="POST">
+            <input class="btn btn-danger" type="submit" value="Librarian">
+          </form>
+          <form action="{{ url_for('posG', usr_id=usr.id , V=0) }}" method="POST">
+            <input class="btn btn-danger" type="submit" value="Nullify">
+          </form>
+          <div class="media-body">
+            <h2><a class="article-title" href="{{ url_for('post', post_id=post.id) }}">{{ usr.username }}</a></h2>
+            <p class="article-content">{{ usr.email }}</p>
+          </div>
+        </article>
+    {% endfor %}
+{% endblock content %}
